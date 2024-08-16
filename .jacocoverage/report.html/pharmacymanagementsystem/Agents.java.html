@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Agents.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;PharmacyManagementSystem&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pharmacymanagementsystem</a> &gt; <span class="el_source">Agents.java</span></div><h1>Agents.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pharmacymanagementsystem;
+
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
+
+/**
+ *
+ * @author Hp
+ */
+public class Agents extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Agents
+     */
+<span class="nc" id="L28">    Agents_repository A = new Agents_repository();</span>
+    
+<span class="nc" id="L30">    Connection Con = null;</span>
+<span class="nc" id="L31">    Statement st = null;</span>
+<span class="nc" id="L32">    ResultSet rs = null;</span>
+    
+    public int id ;public String name ; public int age ; public String phone ;
+    public String password ;public String gender ;
+    
+<span class="nc" id="L37">    public Agents() {</span>
+      
+<span class="nc" id="L39">        initComponents();</span>
+<span class="nc" id="L40">        A.SelectMed(Con , st ,rs , AgentTable);</span>
+<span class="nc" id="L41">    }</span>
+
+    public Connection getCon() {
+<span class="nc" id="L44">        return Con;</span>
+    }
+
+    public void setCon(Connection Con) {
+<span class="nc" id="L48">        this.Con = Con;</span>
+<span class="nc" id="L49">    }</span>
+
+    public Statement getSt() {
+<span class="nc" id="L52">        return st;</span>
+    }
+
+    public void setSt(Statement st) {
+<span class="nc" id="L56">        this.st = st;</span>
+<span class="nc" id="L57">    }</span>
+
+    public ResultSet getRs() {
+<span class="nc" id="L60">        return rs;</span>
+    }
+
+    public void setRs(ResultSet rs) {
+<span class="nc" id="L64">        this.rs = rs;</span>
+<span class="nc" id="L65">    }</span>
+    
+    public void get_data(){
+<span class="nc" id="L68">        this.id = Integer.valueOf(AgId.getText());</span>
+<span class="nc" id="L69">        this.name = AgName.getText();</span>
+<span class="nc" id="L70">        this.age =  Integer.valueOf(AgAGE.getText());      </span>
+<span class="nc" id="L71">        this.phone = AgPHONE.getText() ;</span>
+<span class="nc" id="L72">        this.password = Agpass.getText();</span>
+<span class="nc" id="L73">        this.gender = agentgender.getSelectedItem().toString();</span>
+<span class="nc" id="L74">    }</span>
+    
+    
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L81">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="nc" id="L82">        jPanel2 = new javax.swing.JPanel();</span>
+<span class="nc" id="L83">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="nc" id="L84">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="nc" id="L85">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="nc" id="L86">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="nc" id="L87">        jLabel8 = new javax.swing.JLabel();</span>
+<span class="nc" id="L88">        jLabel9 = new javax.swing.JLabel();</span>
+<span class="nc" id="L89">        jLabel11 = new javax.swing.JLabel();</span>
+<span class="nc" id="L90">        AgId = new javax.swing.JTextField();</span>
+<span class="nc" id="L91">        AgName = new javax.swing.JTextField();</span>
+<span class="nc" id="L92">        AgAGE = new javax.swing.JTextField();</span>
+<span class="nc" id="L93">        AgPHONE = new javax.swing.JTextField();</span>
+<span class="nc" id="L94">        agentgender = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="nc" id="L95">        Add = new javax.swing.JButton();</span>
+<span class="nc" id="L96">        Update = new javax.swing.JButton();</span>
+<span class="nc" id="L97">        Delete = new javax.swing.JButton();</span>
+<span class="nc" id="L98">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L99">        AgentTable = new javax.swing.JTable();</span>
+<span class="nc" id="L100">        jLabel12 = new javax.swing.JLabel();</span>
+<span class="nc" id="L101">        Clear = new javax.swing.JButton();</span>
+<span class="nc" id="L102">        Agpass = new javax.swing.JTextField();</span>
+<span class="nc" id="L103">        logout = new javax.swing.JLabel();</span>
+<span class="nc" id="L104">        exitbtn = new javax.swing.JLabel();</span>
+<span class="nc" id="L105">        company = new javax.swing.JLabel();</span>
+<span class="nc" id="L106">        selling = new javax.swing.JLabel();</span>
+
+<span class="nc" id="L108">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+
+<span class="nc" id="L110">        jPanel1.setBackground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L111">        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L113">                jPanel1MouseEntered(evt);</span>
+<span class="nc" id="L114">            }</span>
+        });
+
+<span class="nc" id="L117">        jPanel2.setBackground(new java.awt.Color(255, 255, 255));</span>
+
+<span class="nc" id="L119">        jLabel1.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 24)); // NOI18N</span>
+<span class="nc" id="L120">        jLabel1.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L121">        jLabel1.setText(&quot; MANAGE  AGENTS&quot;);</span>
+
+<span class="nc" id="L123">        jLabel5.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L124">        jLabel5.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L125">        jLabel5.setText(&quot; ID:&quot;);</span>
+
+<span class="nc" id="L127">        jLabel6.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L128">        jLabel6.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L129">        jLabel6.setText(&quot; NAME&quot;);</span>
+
+<span class="nc" id="L131">        jLabel7.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L132">        jLabel7.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L133">        jLabel7.setText(&quot;AGE&quot;);</span>
+
+<span class="nc" id="L135">        jLabel8.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L136">        jLabel8.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L137">        jLabel8.setText(&quot;PASSWORD&quot;);</span>
+
+<span class="nc" id="L139">        jLabel9.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L140">        jLabel9.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L141">        jLabel9.setText(&quot;PHONE&quot;);</span>
+
+<span class="nc" id="L143">        jLabel11.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L144">        jLabel11.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L145">        jLabel11.setText(&quot;GENDER&quot;);</span>
+
+<span class="nc" id="L147">        AgId.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L148">        AgId.setForeground(new java.awt.Color(0, 153, 0));</span>
+
+<span class="nc" id="L150">        AgName.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L151">        AgName.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L152">        AgName.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L154">                AgNameActionPerformed(evt);</span>
+<span class="nc" id="L155">            }</span>
+        });
+
+<span class="nc" id="L158">        AgAGE.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L159">        AgAGE.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L160">        AgAGE.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L162">                AgAGEActionPerformed(evt);</span>
+<span class="nc" id="L163">            }</span>
+        });
+
+<span class="nc" id="L166">        AgPHONE.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L167">        AgPHONE.setForeground(new java.awt.Color(0, 153, 0));</span>
+
+<span class="nc" id="L169">        agentgender.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L170">        agentgender.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L171">        agentgender.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Male&quot;, &quot;Female&quot;, &quot; &quot; }));</span>
+<span class="nc" id="L172">        agentgender.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L174">                agentgenderActionPerformed(evt);</span>
+<span class="nc" id="L175">            }</span>
+        });
+
+<span class="nc" id="L178">        Add.setBackground(new java.awt.Color(51, 153, 0));</span>
+<span class="nc" id="L179">        Add.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 16)); // NOI18N</span>
+<span class="nc" id="L180">        Add.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L181">        Add.setText(&quot;ADD&quot;);</span>
+<span class="nc" id="L182">        Add.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L184">                AddActionPerformed(evt);</span>
+<span class="nc" id="L185">            }</span>
+        });
+
+<span class="nc" id="L188">        Update.setBackground(new java.awt.Color(51, 153, 0));</span>
+<span class="nc" id="L189">        Update.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 16)); // NOI18N</span>
+<span class="nc" id="L190">        Update.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L191">        Update.setText(&quot;UPDATE&quot;);</span>
+<span class="nc" id="L192">        Update.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L194">                UpdateActionPerformed(evt);</span>
+<span class="nc" id="L195">            }</span>
+        });
+
+<span class="nc" id="L198">        Delete.setBackground(new java.awt.Color(51, 153, 0));</span>
+<span class="nc" id="L199">        Delete.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 16)); // NOI18N</span>
+<span class="nc" id="L200">        Delete.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L201">        Delete.setText(&quot;DELETE&quot;);</span>
+<span class="nc" id="L202">        Delete.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L204">                DeleteActionPerformed(evt);</span>
+<span class="nc" id="L205">            }</span>
+        });
+
+<span class="nc" id="L208">        AgentTable.setModel(new javax.swing.table.DefaultTableModel(</span>
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                &quot;Id&quot;, &quot;NAME&quot;, &quot;AGE&quot;, &quot;PHONE&quot;, &quot;PASSWORD&quot;, &quot;GENDER&quot;
+            }
+        ));
+<span class="nc" id="L219">        AgentTable.setIntercellSpacing(new java.awt.Dimension(0, 0));</span>
+<span class="nc" id="L220">        AgentTable.setRowHeight(25);</span>
+<span class="nc" id="L221">        AgentTable.setSelectionBackground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L222">        AgentTable.setSurrendersFocusOnKeystroke(true);</span>
+<span class="nc" id="L223">        AgentTable.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L225">                AgentTableMouseClicked(evt);</span>
+<span class="nc" id="L226">            }</span>
+        });
+<span class="nc" id="L228">        jScrollPane1.setViewportView(AgentTable);</span>
+
+<span class="nc" id="L230">        jLabel12.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L231">        jLabel12.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L232">        jLabel12.setText(&quot; AGENTS LIST &quot;);</span>
+
+<span class="nc" id="L234">        Clear.setBackground(new java.awt.Color(51, 153, 0));</span>
+<span class="nc" id="L235">        Clear.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 16)); // NOI18N</span>
+<span class="nc" id="L236">        Clear.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L237">        Clear.setText(&quot;CLEAR&quot;);</span>
+<span class="nc" id="L238">        Clear.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L240">                ClearActionPerformed(evt);</span>
+<span class="nc" id="L241">            }</span>
+        });
+
+<span class="nc" id="L244">        Agpass.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 12)); // NOI18N</span>
+<span class="nc" id="L245">        Agpass.setForeground(new java.awt.Color(0, 153, 0));</span>
+<span class="nc" id="L246">        Agpass.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L248">                AgpassActionPerformed(evt);</span>
+<span class="nc" id="L249">            }</span>
+        });
+
+<span class="nc" id="L252">        logout.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L253">        logout.setForeground(new java.awt.Color(51, 204, 0));</span>
+<span class="nc" id="L254">        logout.setText(&quot;Log Out&quot;);</span>
+<span class="nc" id="L255">        logout.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L257">                logoutMouseClicked(evt);</span>
+<span class="nc" id="L258">            }</span>
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L260">                logoutMouseEntered(evt);</span>
+<span class="nc" id="L261">            }</span>
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L263">                logoutMouseExited(evt);</span>
+<span class="nc" id="L264">            }</span>
+        });
+
+<span class="nc" id="L267">        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);</span>
+<span class="nc" id="L268">        jPanel2.setLayout(jPanel2Layout);</span>
+<span class="nc" id="L269">        jPanel2Layout.setHorizontalGroup(</span>
+<span class="nc" id="L270">            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L271">            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L272">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L273">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L274">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L275">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L276">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L277">                                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L278">                                        .addGap(38, 38, 38)</span>
+<span class="nc" id="L279">                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L280">                                            .addComponent(jLabel7)</span>
+<span class="nc" id="L281">                                            .addComponent(jLabel6)</span>
+<span class="nc" id="L282">                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L283">                                        .addGap(35, 35, 35)</span>
+<span class="nc" id="L284">                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L285">                                            .addComponent(AgId, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)</span>
+<span class="nc" id="L286">                                            .addComponent(AgName)</span>
+<span class="nc" id="L287">                                            .addComponent(AgAGE)))</span>
+<span class="nc" id="L288">                                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L289">                                        .addGap(146, 146, 146)</span>
+<span class="nc" id="L290">                                        .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L291">                                .addGap(20, 20, 20)</span>
+<span class="nc" id="L292">                                .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L293">                                .addGap(27, 27, 27)</span>
+<span class="nc" id="L294">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L295">                                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L296">                                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L297">                                        .addGap(35, 35, 35)</span>
+<span class="nc" id="L298">                                        .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L299">                                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L300">                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L301">                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)</span>
+<span class="nc" id="L302">                                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L303">                                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))</span>
+<span class="nc" id="L304">                                            .addComponent(jLabel8))</span>
+<span class="nc" id="L305">                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L306">                                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L307">                                                .addGap(27, 27, 27)</span>
+<span class="nc" id="L308">                                                .addComponent(agentgender, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L309">                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L310">                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L311">                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L312">                                                    .addComponent(Agpass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)</span>
+<span class="nc" id="L313">                                                    .addComponent(AgPHONE, javax.swing.GroupLayout.Alignment.TRAILING)))))))</span>
+<span class="nc" id="L314">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L315">                                .addGap(298, 298, 298)</span>
+<span class="nc" id="L316">                                .addComponent(jLabel12))</span>
+<span class="nc" id="L317">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L318">                                .addGap(264, 264, 264)</span>
+<span class="nc" id="L319">                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L320">                        .addGap(0, 158, Short.MAX_VALUE))</span>
+<span class="nc" id="L321">                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L322">                        .addGap(0, 70, Short.MAX_VALUE)</span>
+<span class="nc" id="L323">                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L324">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L325">                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L326">                .addContainerGap())</span>
+        );
+<span class="nc" id="L328">        jPanel2Layout.setVerticalGroup(</span>
+<span class="nc" id="L329">            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L330">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L331">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L332">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L333">                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L334">                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L335">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L336">                        .addGap(37, 37, 37)</span>
+<span class="nc" id="L337">                        .addComponent(jLabel1)</span>
+<span class="nc" id="L338">                        .addGap(36, 36, 36)</span>
+<span class="nc" id="L339">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L340">                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L341">                                .addComponent(AgId)</span>
+<span class="nc" id="L342">                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L343">                                .addComponent(AgPHONE, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L344">                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L345">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L346">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L347">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L348">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L349">                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L350">                                    .addComponent(AgName))</span>
+<span class="nc" id="L351">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L352">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L353">                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L354">                                    .addComponent(AgAGE))</span>
+<span class="nc" id="L355">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L356">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L357">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L358">                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L359">                                    .addComponent(Agpass, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L360">                                .addGap(18, 18, 18)</span>
+<span class="nc" id="L361">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L362">                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L363">                                    .addComponent(agentgender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L364">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)))</span>
+<span class="nc" id="L365">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L366">                            .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L367">                            .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L368">                            .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L369">                            .addComponent(Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L370">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L371">                        .addComponent(jLabel12)</span>
+<span class="nc" id="L372">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L373">                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L374">                .addGap(12, 12, 12))</span>
+        );
+
+<span class="nc" id="L377">        exitbtn.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 24)); // NOI18N</span>
+<span class="nc" id="L378">        exitbtn.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L379">        exitbtn.setText(&quot; X&quot;);</span>
+<span class="nc" id="L380">        exitbtn.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L382">                exitbtnMouseClicked(evt);</span>
+<span class="nc" id="L383">            }</span>
+        });
+
+<span class="nc" id="L386">        company.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 22)); // NOI18N</span>
+<span class="nc" id="L387">        company.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L388">        company.setText(&quot;COMPANY&quot;);</span>
+<span class="nc" id="L389">        company.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L391">                companyMouseClicked(evt);</span>
+<span class="nc" id="L392">            }</span>
+        });
+
+<span class="nc" id="L395">        selling.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 22)); // NOI18N</span>
+<span class="nc" id="L396">        selling.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L397">        selling.setText(&quot;SELLING&quot;);</span>
+<span class="nc" id="L398">        selling.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L400">                sellingMouseClicked(evt);</span>
+<span class="nc" id="L401">            }</span>
+        });
+
+<span class="nc" id="L404">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
+<span class="nc" id="L405">        jPanel1.setLayout(jPanel1Layout);</span>
+<span class="nc" id="L406">        jPanel1Layout.setHorizontalGroup(</span>
+<span class="nc" id="L407">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L408">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L409">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L410">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L411">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L412">                        .addGap(0, 0, Short.MAX_VALUE)</span>
+<span class="nc" id="L413">                        .addComponent(selling, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L414">                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L415">                        .addComponent(company, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L416">                        .addGap(0, 0, Short.MAX_VALUE)))</span>
+<span class="nc" id="L417">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L418">                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L419">                .addGap(184, 184, 184))</span>
+<span class="nc" id="L420">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L421">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L422">                .addComponent(exitbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L423">                .addGap(145, 145, 145))</span>
+        );
+<span class="nc" id="L425">        jPanel1Layout.setVerticalGroup(</span>
+<span class="nc" id="L426">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L427">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L428">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L429">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L430">                        .addGap(167, 167, 167)</span>
+<span class="nc" id="L431">                        .addComponent(company)</span>
+<span class="nc" id="L432">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L433">                        .addComponent(selling))</span>
+<span class="nc" id="L434">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L435">                        .addContainerGap()</span>
+<span class="nc" id="L436">                        .addComponent(exitbtn)</span>
+<span class="nc" id="L437">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L438">                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L439">                .addContainerGap(33, Short.MAX_VALUE))</span>
+        );
+
+<span class="nc" id="L442">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L443">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L444">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L445">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L446">            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+        );
+<span class="nc" id="L448">        layout.setVerticalGroup(</span>
+<span class="nc" id="L449">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L450">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+        );
+
+<span class="nc" id="L453">        pack();</span>
+<span class="nc" id="L454">        setLocationRelativeTo(null);</span>
+<span class="nc" id="L455">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    
+    private void AgNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgNameActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L460">    }//GEN-LAST:event_AgNameActionPerformed</span>
+
+    private void AgAGEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgAGEActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L464">    }//GEN-LAST:event_AgAGEActionPerformed</span>
+
+    private void agentgenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentgenderActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L468">    }//GEN-LAST:event_agentgenderActionPerformed</span>
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        
+<span class="nc bnc" id="L472" title="All 2 branches missed.">        if (AgId.getText().isEmpty())</span>
+<span class="nc" id="L473">        {  JOptionPane.showMessageDialog(this, &quot;enter the agent to be deleted &quot;); }</span>
+        else
+        {
+<span class="nc" id="L476">            String ID = AgId.getText();</span>
+<span class="nc" id="L477">            A.Delete(AgentTable, ID);</span>
+        }
+<span class="nc" id="L479">    }//GEN-LAST:event_DeleteActionPerformed</span>
+
+    private void ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearActionPerformed
+<span class="nc" id="L482">        AgId.setText(&quot;&quot;);</span>
+<span class="nc" id="L483">        AgName.setText(&quot;&quot;);</span>
+<span class="nc" id="L484">        AgAGE.setText(&quot;&quot;);       </span>
+<span class="nc" id="L485">        AgPHONE.setText(&quot;&quot;);</span>
+<span class="nc" id="L486">        Agpass.setText(&quot;&quot;);</span>
+<span class="nc" id="L487">    }//GEN-LAST:event_ClearActionPerformed</span>
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        
+<span class="nc" id="L491">        this.get_data();</span>
+<span class="nc" id="L492">        A.Add(id , name , age , phone , password , gender , AgentTable);</span>
+        
+<span class="nc" id="L494">    }//GEN-LAST:event_AddActionPerformed</span>
+
+    private void AgentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgentTableMouseClicked
+       
+<span class="nc" id="L498">      DefaultTableModel model =(DefaultTableModel)AgentTable.getModel();</span>
+<span class="nc" id="L499">      int Myindex = AgentTable.getSelectedRow();</span>
+<span class="nc" id="L500">      AgId.setText(model.getValueAt(Myindex,0).toString());</span>
+<span class="nc" id="L501">      AgName.setText(model.getValueAt(Myindex,1).toString());</span>
+<span class="nc" id="L502">      AgAGE.setText(model.getValueAt(Myindex,2).toString());</span>
+<span class="nc" id="L503">      AgPHONE.setText(model.getValueAt(Myindex,3).toString());</span>
+<span class="nc" id="L504">      Agpass.setText(model.getValueAt(Myindex,4).toString());</span>
+<span class="nc" id="L505">    }//GEN-LAST:event_AgentTableMouseClicked</span>
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        
+<span class="nc bnc" id="L509" title="All 10 branches missed.">         if(AgId.getText().isEmpty() || AgName.getText().isEmpty() || AgAGE.getText().isEmpty() || AgPHONE.getText().isEmpty() || Agpass.getText().isEmpty())</span>
+<span class="nc" id="L510">        {    JOptionPane.showMessageDialog(this, &quot;missing info &quot;); }</span>
+        else 
+        {  
+<span class="nc" id="L513">            this.get_data();</span>
+<span class="nc" id="L514">            A.update(id, name, age, phone, password, gender, AgentTable);</span>
+         }       
+<span class="nc" id="L516">    }//GEN-LAST:event_UpdateActionPerformed</span>
+
+    private void companyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_companyMouseClicked
+        // TODO add your handling code here:
+<span class="nc" id="L520">        new Company().setVisible(true);</span>
+<span class="nc" id="L521">        this.dispose();</span>
+<span class="nc" id="L522">    }//GEN-LAST:event_companyMouseClicked</span>
+
+    private void exitbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitbtnMouseClicked
+        // TODO add your handling code here:
+<span class="nc" id="L526">        System.exit(0);</span>
+<span class="nc" id="L527">    }//GEN-LAST:event_exitbtnMouseClicked</span>
+
+    private void sellingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellingMouseClicked
+        // TODO add your handling code here:
+<span class="nc" id="L531">        new Selling().setVisible(true);</span>
+<span class="nc" id="L532">        this.dispose();</span>
+<span class="nc" id="L533">    }//GEN-LAST:event_sellingMouseClicked</span>
+
+    private void AgpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgpassActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L537">    }//GEN-LAST:event_AgpassActionPerformed</span>
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+<span class="nc" id="L540">        this.setBackground(Color.white);</span>
+<span class="nc" id="L541">    }//GEN-LAST:event_jPanel1MouseEntered</span>
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+<span class="nc" id="L545">         System.exit(0);</span>
+<span class="nc" id="L546">    }//GEN-LAST:event_logoutMouseClicked</span>
+
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        // TODO add your handling code here:
+<span class="nc" id="L550">         logout.setForeground(Color.LIGHT_GRAY);</span>
+<span class="nc" id="L551">    }//GEN-LAST:event_logoutMouseEntered</span>
+
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        // TODO add your handling code here:
+<span class="nc" id="L555">         logout.setForeground(Color.decode(&quot;0x33CC00&quot;));</span>
+<span class="nc" id="L556">    }//GEN-LAST:event_logoutMouseExited</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+<span class="nc bnc" id="L568" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L569" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L570">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L571">                    break;</span>
+                }
+            }
+<span class="nc" id="L574">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L575">            java.util.logging.Logger.getLogger(Agents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L576">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L577">            java.util.logging.Logger.getLogger(Agents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L578">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L579">            java.util.logging.Logger.getLogger(Agents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L580">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L581">            java.util.logging.Logger.getLogger(Agents.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L582">        }</span>
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+<span class="nc" id="L586">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+            public void run() {
+<span class="nc" id="L588">                new Agents().setVisible(true);</span>
+<span class="nc" id="L589">            }</span>
+        });
+<span class="nc" id="L591">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JTextField AgAGE;
+    private javax.swing.JTextField AgId;
+    private javax.swing.JTextField AgName;
+    private javax.swing.JTextField AgPHONE;
+    private javax.swing.JTable AgentTable;
+    private javax.swing.JTextField Agpass;
+    private javax.swing.JButton Clear;
+    private javax.swing.JButton Delete;
+    private javax.swing.JButton Update;
+    private javax.swing.JComboBox&lt;String&gt; agentgender;
+    private javax.swing.JLabel company;
+    private javax.swing.JLabel exitbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logout;
+    private javax.swing.JLabel selling;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

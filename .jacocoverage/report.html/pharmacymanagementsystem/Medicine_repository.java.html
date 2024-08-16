@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Medicine_repository.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;PharmacyManagementSystem&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pharmacymanagementsystem</a> &gt; <span class="el_source">Medicine_repository.java</span></div><h1>Medicine_repository.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pharmacymanagementsystem;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import net.proteanit.sql.DbUtils;
+
+/**
+ *
+ * @author Dell
+ */
+<span class="fc" id="L25">public class Medicine_repository {</span>
+    
+    public void SelectMed(Connection Con ,Statement st , ResultSet rs , JTable MedicineTable)
+    { try { 
+<span class="fc" id="L29">        Con =DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;);</span>
+<span class="fc" id="L30">        st = Con.createStatement();</span>
+<span class="fc" id="L31">        rs = st.executeQuery(&quot;Select *from MedicineTBL&quot;);</span>
+<span class="fc" id="L32">        MedicineTable.setModel(DbUtils.resultSetToTableModel(rs));</span>
+<span class="fc" id="L33">        Con.close();</span>
+<span class="nc" id="L34">    }   catch (SQLException ex) {</span>
+<span class="nc" id="L35">            System.out.println(ex.getMessage());</span>
+<span class="fc" id="L36">        }</span>
+<span class="fc" id="L37">    }</span>
+    
+ 
+    public double get_Sqty_C(String comp_name , int clas) throws Exception 
+    {
+<span class="fc" id="L42">        Medicine M= new Medicine();</span>
+<span class="fc" id="L43">            int  qty = 0 , qty_slr = 0 , med_count ;</span>
+<span class="fc" id="L44">            double sqty = 0;</span>
+            
+            //The medicines class range = [1,3]
+<span class="fc bfc" id="L47" title="All 4 branches covered.">            if(clas&lt;1 || clas&gt;3 )</span>
+<span class="fc" id="L48">                throw new ArithmeticException(&quot;No medicines exist with this class value&quot;);</span>
+            
+        try {
+<span class="fc" id="L51">                 M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="fc" id="L52">                 M.setSt( M.Con.createStatement());</span>
+                 
+                 //To make sure the company exists in the data base
+<span class="fc" id="L55">                 M.setRs(M.st.executeQuery(&quot;SELECT exists(select COMPNAME from COMPANYTBL where COMPNAME LIKE '&quot; + comp_name + &quot;') as found&quot; ));</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">                 if (M.rs.next()) </span>
+                 {
+<span class="fc" id="L58">                    int x = M.rs.getInt(&quot;found&quot;);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                    if (x == 0)</span>
+<span class="fc" id="L60">                        throw new Exception(&quot;No medicines exist under this company name&quot;);</span>
+                 }
+                  
+                 
+                 //Start fetching quantity info.
+<span class="fc" id="L65">                 M.setRs(M.st.executeQuery(&quot;SELECT * FROM MedicineTBL WHERE MEDCOMP LIKE '&quot; + comp_name + &quot;' AND MEDID LIKE '&quot; + clas + &quot;%'&quot;));</span>
+           
+<span class="fc bfc" id="L67" title="All 2 branches covered.">            while (M.rs.next()) </span>
+           {
+<span class="fc" id="L69">               qty  = M.rs.getInt(&quot;medqty&quot;);</span>
+               
+<span class="fc" id="L71">               qty_slr  = M.rs.getInt(&quot;qty_slr&quot;);</span>
+               
+<span class="fc" id="L73">               sqty+= qty_slr - qty;   </span>
+            }
+            
+<span class="nc" id="L76">        } catch (SQLException ex) {</span>
+<span class="nc" id="L77">             System.out.println(&quot;Error in getting quantity&quot;);</span>
+<span class="nc" id="L78">             return 0;</span>
+<span class="fc" id="L79">        }</span>
+        
+        //To get the number of medicines
+        try { 
+<span class="fc" id="L83">            M.setRs(M.st.executeQuery(&quot;SELECT count() as count FROM MedicineTBL WHERE MEDCOMP LIKE '&quot; + comp_name + &quot;' AND MEDID LIKE '&quot; + clas + &quot;%'&quot;));</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">            if (M.rs.next())</span>
+           {       
+<span class="fc" id="L86">                med_count = M.rs.getInt(&quot;count&quot;);</span>
+<span class="fc" id="L87">                sqty = Math.pow( (sqty/clas) ,(double) med_count);</span>
+           } 
+            
+<span class="nc" id="L90">        } catch (SQLException ex) {</span>
+<span class="nc" id="L91">            System.out.println(&quot;Error in getting count&quot;);</span>
+<span class="fc" id="L92">        } </span>
+        
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if(qty == 0 )</span>
+<span class="fc" id="L95">        return 0;   </span>
+        
+<span class="fc" id="L97">        return sqty;</span>
+    }
+            
+            
+            
+    /*    public double get_SqtyC(String comp_name , int clas)
+    {
+    Medicine M= new Medicine();
+    int  qty = 0 , qty_slr = 0 , med_count ;
+    double sqty = 0;
+    comp_name =  comp_name.toUpperCase();
+    try {
+    M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));
+    M.setSt( M.Con.createStatement());
+    M.setRs(M.st.executeQuery(&quot;SELECT * FROM MedicineTBL WHERE MEDCOMP LIKE '&quot; + comp_name + &quot;' AND MEDID LIKE '&quot; + clas + &quot;%'&quot;));
+    
+    
+    while (M.rs.next()) {
+    qty  = M.rs.getInt(&quot;medqty&quot;);
+    
+    qty_slr  = M.rs.getInt(&quot;qty_slr&quot;);
+    
+    sqty+= qty_slr - qty;
+    
+    }
+    
+    M.setRs(M.st.executeQuery(&quot;SELECT count() as count FROM MedicineTBL WHERE MEDCOMP LIKE '&quot; + comp_name + &quot;' AND MEDID LIKE '&quot; + clas + &quot;%'&quot;));
+    if (M.rs.next())
+    {
+    med_count = M.rs.getInt(&quot;count&quot;);
+    sqty = Math.pow( (sqty/clas) ,(double) med_count);
+    }
+    else
+    return 0.0 ;
+    
+    } catch (SQLException e) {
+    System.out.println(&quot;Error in getting quantity&quot;);
+    }
+    
+    return sqty;
+    }*/
+    
+    
+    public void GetCompany(JComboBox MedComp)
+    {  /*
+        Medicine M2 = new Medicine();
+        try{
+            M2.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));
+            M2.setSt(M2.getCon().createStatement());
+            String query = &quot;Select *from COMPANYTBL&quot;;
+            M2.setRs(M2.getSt().executeQuery(query));
+            while(M2.getRs().next())
+            {
+                String Mycomp = M2.getRs().getString(&quot;COMPNAME&quot;);
+                MedComp.addItem(Mycomp);
+            }
+        }catch(SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        */
+         try{
+<span class="fc" id="L159">             Connection Con = DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;);</span>
+<span class="fc" id="L160">             Statement st = Con.createStatement();</span>
+<span class="fc" id="L161">            String query = &quot;Select *from COMPANYTBL&quot;;</span>
+<span class="fc" id="L162">             ResultSet rs = st.executeQuery(query);</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            while(rs.next())</span>
+            {
+<span class="fc" id="L165">                String Mycomp = rs.getString(&quot;COMPNAME&quot;);</span>
+<span class="fc" id="L166">                MedComp.addItem(Mycomp);</span>
+<span class="fc" id="L167">            }</span>
+<span class="fc" id="L168">            Con.close();</span>
+<span class="nc" id="L169">        }catch(SQLException e)</span>
+        {
+<span class="nc" id="L171">            e.printStackTrace();</span>
+<span class="fc" id="L172">        }</span>
+<span class="fc" id="L173">    }</span>
+    
+    public void Delete (String ID , JTable MedicineTable)
+    {
+<span class="nc" id="L177">        Medicine M = new Medicine();</span>
+        
+        try{
+<span class="nc" id="L180">           M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L181">           String Query =&quot;Delete from MEDICINETBL where MEDID=&quot; +ID;</span>
+<span class="nc" id="L182">           Statement Add = M.getCon().createStatement();</span>
+<span class="nc" id="L183">           Add.executeLargeUpdate(Query);</span>
+<span class="nc" id="L184">           SelectMed(M.getCon(), M.getSt(), M.getRs(), MedicineTable);</span>
+<span class="nc" id="L185">           JOptionPane.showMessageDialog(M, &quot;Medicine deleted Successfully&quot;);</span>
+<span class="nc" id="L186">           M.getCon().close();</span>
+
+<span class="nc" id="L188">            } catch (SQLException ex) {</span>
+<span class="nc" id="L189">                  System.out.println(ex.getMessage());            }</span>
+<span class="nc" id="L190">    }</span>
+    
+    
+    
+    public void Add (String ID , String Name , String Price , String Qty ,java.util.Date FD,java.util.Date ED, JTable MedicineTable , JComboBox MedComp , String QTY_SLR)
+    {
+<span class="nc" id="L196">        Medicine M = new Medicine();</span>
+        
+        /*M.setFDate(FDate);
+        FDate = MedFab.getDate();
+        MyFabdate = new java.sql.Date(FDate.getTime());
+        EDate = MedExp.getDate();
+        MyExpdate = new java.sql.Date(EDate.getTime());*/
+        try {
+<span class="nc" id="L204">            M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L205">            PreparedStatement add = M.getCon().prepareStatement(&quot;insert into MEDICINETBL values(?,?,?,?,?,?,?,?)&quot;);</span>
+<span class="nc" id="L206">            add.setInt(1, Integer.valueOf(ID));</span>
+<span class="nc" id="L207">            add.setString(2,Name);</span>
+<span class="nc" id="L208">            add.setInt(3, Integer.valueOf(Price));</span>
+<span class="nc" id="L209">            add.setInt(4, Integer.valueOf(Qty));</span>
+<span class="nc" id="L210">            add.setInt(8, Integer.valueOf(QTY_SLR));</span>
+            
+<span class="nc" id="L212">            add.setString(5, FD.toString());           </span>
+<span class="nc" id="L213">            add.setString(6, ED.toString());</span>
+            
+<span class="nc" id="L215">            add.setString(7, MedComp.getSelectedItem().toString());</span>
+<span class="nc" id="L216">            int row = add.executeUpdate();</span>
+<span class="nc" id="L217">            JOptionPane.showMessageDialog(M, &quot;Medicine Added Successfully&quot;);</span>
+<span class="nc" id="L218">            M.getCon().close();</span>
+<span class="nc" id="L219">            SelectMed(M.getCon(), M.getSt(), M.getRs(), MedicineTable);</span>
+
+<span class="nc" id="L221">        } catch (SQLException e) {</span>
+<span class="nc" id="L222">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L223">        }</span>
+<span class="nc" id="L224">    }</span>
+    
+    
+    public void Update(String ID , String Name , String Price , String Qty ,java.util.Date FD,java.util.Date ED, JTable MedicineTable , JComboBox MedComp, String QTY_SLR)
+    {
+<span class="nc" id="L229">        Medicine M = new Medicine();</span>
+        
+        try{
+<span class="nc" id="L232">            M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L233">            String UpdateQuery =&quot;Update MEDICINETBL set MEDNAME = '&quot;+Name+&quot;'&quot;+&quot;,MEDPRICE = &quot;+Price+&quot;&quot;+&quot;,MEDQTY = &quot;+Qty+&quot;&quot;+&quot;,MEDFAB = '&quot;+FD.toString()+&quot;'&quot;+&quot;,MEDEXP = '&quot;+ED.toString()+&quot;'&quot;+&quot;,MEDCOMP = '&quot;+MedComp.getSelectedItem().toString()+&quot;' ,QTY_SLR = &quot; + QTY_SLR +&quot; where MEDId=&quot;+ ID;</span>
+<span class="nc" id="L234">           Statement Add = M.getCon().createStatement();</span>
+<span class="nc" id="L235">           Add.executeLargeUpdate(UpdateQuery);</span>
+<span class="nc" id="L236">           JOptionPane.showMessageDialog(M, &quot;medicine updated successfully &quot;);</span>
+<span class="nc" id="L237">           M.getCon().close();</span>
+    
+<span class="nc" id="L239">        }   catch (SQLException ex) {</span>
+<span class="nc" id="L240">                  System.out.println(ex.getMessage());           </span>
+<span class="nc" id="L241">        }</span>
+<span class="nc" id="L242">            SelectMed(M.getCon(), M.getSt(), M.getRs(), MedicineTable); </span>
+<span class="nc" id="L243">    }</span>
+    public int search(String st1){
+        
+<span class="fc" id="L246">        Medicine M = new Medicine();</span>
+<span class="fc" id="L247">        int flag = 0;</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">        if (st1.isEmpty()){ return -1;}</span>
+        try {  
+<span class="fc" id="L250">                M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="fc" id="L251">                Statement s = M.getCon().createStatement();</span>
+<span class="fc" id="L252">                ResultSet rs = s.executeQuery(&quot;select MEDNAME from MEDICINETBL&quot;);</span>
+<span class="fc bfc" id="L253" title="All 2 branches covered.">                while(rs.next())</span>
+                { 
+<span class="fc bfc" id="L255" title="All 2 branches covered.">                    if (rs.getString(&quot;MEDNAME&quot;).equalsIgnoreCase(st1))</span>
+<span class="fc" id="L256">                    {   flag = 1;</span>
+<span class="fc" id="L257">                        break;</span>
+                    }
+                }
+<span class="fc" id="L260">                M.getCon().close();</span>
+<span class="nc" id="L261">        }catch (SQLException ex) {</span>
+<span class="nc" id="L262">               System.out.println(ex.getMessage());</span>
+<span class="fc" id="L263">            }</span>
+<span class="fc" id="L264">        return flag;</span>
+}
+    public String search_expdate(String med_name){
+        
+<span class="nc" id="L268">        Medicine M = new Medicine();</span>
+<span class="nc" id="L269">        String ss = null ;</span>
+        try {  
+           
+<span class="nc" id="L272">            M.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L273">                String sql = &quot;Select MEDEXP from MEDICINETBL where MEDICINETBL.MEDNAME ='&quot;+med_name+&quot;'&quot;;</span>
+<span class="nc" id="L274">              Statement s = M.getCon().createStatement();</span>
+<span class="nc" id="L275">                ResultSet rs = s.executeQuery(sql);</span>
+                
+<span class="nc bnc" id="L277" title="All 2 branches missed.">                while(rs.next()){</span>
+<span class="nc" id="L278">                ss = rs.getString(&quot;MEDEXP&quot;);</span>
+                }
+                
+<span class="nc" id="L281">                rs.close();</span>
+<span class="nc" id="L282">                M.getCon().close();</span>
+            
+<span class="nc" id="L284">        }catch (SQLException ex) {</span>
+<span class="nc" id="L285">               System.out.println(ex.getMessage());</span>
+<span class="nc" id="L286">            }</span>
+<span class="nc" id="L287">        return ss;</span>
+}
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

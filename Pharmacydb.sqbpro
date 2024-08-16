@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Dell/Desktop/9/SW2_project/Pharmacydb.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="2269"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainPATIENTTBL"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="AGENTTBL" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="80"/><column index="3" value="57"/><column index="4" value="97"/><column index="5" value="75"/><column index="6" value="93"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Admin" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="63"/><column index="2" value="52"/><column index="3" value="93"/><column index="4" value="97"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="BILLTBL" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="56"/><column index="2" value="77"/><column index="3" value="90"/><column index="4" value="58"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="COMPANYTBL" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="81"/><column index="2" value="110"/><column index="3" value="330"/><column index="4" value="93"/><column index="5" value="120"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="MEDICINETBL" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="69"/><column index="2" value="119"/><column index="3" value="100"/><column index="4" value="82"/><column index="5" value="91"/><column index="6" value="91"/><column index="7" value="98"/><column index="8" value="88"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PATIENTTBL" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="2" value="181"/><column index="6" value="301"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">-- table AGENTTBL
+
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (1, 'AHMED', 35, 01279975423,'AH123', 'MALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (2, 'NADA', 29, 01544445423 , 'NA527', 'FEMALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (3, 'MAI ', 27, 01587875423 , 'MA827', 'FEMALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (4, 'MARIAM', 26, 01212345678 , 'MAR875', 'FEMALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (5, 'ALI', 23, 01097975423 , 'ali564', 'MALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (6, 'OMAR', 25, 01179975423 , 'om_789', 'MALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (7, 'SALMA', 30, 01270987654 , 'ss4789', 'FEMALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (8, 'KARIM', 32, 0127903962 , 'k2332', 'MALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (9, 'SARA', 35, 01104938423 , 'sa741', 'FEMALE');
+ INSERT INTO AGENTTBL (`AID`, `ANAME`, `AAGE`, `APHONE` ,`APASS`, `AGENDER`) VALUES (10, 'AYA', 28, 01279975423 , 'aya@456', 'FEMALE');
+ 
+ 
+ -- TABLE Admin
+ 
+INSERT INTO `Admin` (`Name`, `ID`, `Password`, `Phone`) VALUES ('HANAA', '1', '1521', '01555358726');
+INSERT INTO `Admin` (`Name`, `ID`, `Password`, `Phone`) VALUES ('GHADA', '2', '5825', '01255659599');
+INSERT INTO `Admin` (`Name`, `ID`, `Password`, `Phone`) VALUES ('FARAH', '3', '8525', '01536853358');
+INSERT INTO `Admin` (`Name`, `ID`, `Password`, `Phone`) VALUES ('FAWZIA', '4', '5239', '01533662258');
+INSERT INTO `Admin` (`Name`, `ID`, `Password`, `Phone`) VALUES ('Hala', '5', '4582', '01532445667');
+
+-- Table BILLTBL
+
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('1', '2023-04-14', 115 , 12);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('2', '2023-04-15', 50, 5);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('3', '2023-04-15', 105, 11);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('4', '2023-04-16', 25, 3);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('5', '2023-04-16', 250, 25);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('6', '2023-04-17', 95, 10);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('7', '2023-04-17', 45, 5);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('8', '2023-04-18', 113, 11);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`,`Profit`) VALUES ('9', '2023-04-18', 175, 18);
+INSERT INTO `BILLTBL` (`BillID`, `BILLDATE`, `TOTALPAID`, `Profit`) VALUES ('10','2023-04-19', 200, 20);
+
+
+ -- COMPANYTBL
+ 
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('1', 'BMS', '44-AHMED BADWY-NEW CAIRO' ,'10', '19752');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('2', 'ROCHE', '52-EL HEGAZ SQUARE-MISR EL GEDIDA' ,'12', '19728');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('3', 'PHARAMA', '28-EL NOZHA-MISR EL GEDIDA' , '25', '19348');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('4', 'ALPHA', '16-MAKRAM EBED-MADENT NASR' , '15', '19876');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('5', 'MED CARE', '9-HELIOPLIS SQUARE-MISR EL GEDIDA' , '20', '19321');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('6', 'IBN SINA', '35-ABAS EL-AQAD-MADENT NASR' , '18', '19635');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('7', 'APEK', '12-OMAR MAKRAM-MAADI' , '10', '19456');
+ INSERT INTO `COMPANYTBL` (`COMPID`, `COMPNAME`, `COMPAD`, `COMPEXP`, `COMPPHONE`) VALUES ('8', 'NILE COSMOTICS', '47-MOSTAFA EL NAHAS-MADENT NASR' , '13', '19812');
+
+ delete from AGENTTBL where AID =4 OR 5 OR 2;
+ 
+ -- MEDICINETBL
+ 
+ alter table MEDICINETBL add column QTY_SLR int;
+ 
+ INSERT INTO `MEDICINETBL` VALUES ('1001', 'COMTREX', '20', '50', '2023-05-05', '2025-05-05', 'PHARMA' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('3002', 'PANADOL', '45', '40', '2022-07-05', '2025-07-05', 'BMS' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('1003', 'CONGSTAL', '50', '50', '2023-04-09', '2025-04-19', 'ROCHE' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('2004', 'FLUREST', '40', '50', '2022-11-15', '2025-11-15', 'ALPHA' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('1005', 'CATAFLAM', '25', '40', '2023-02-28', '2025-05-28', 'IBN SINA' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('3006', 'PARACITAMOL', '30', '40', '2022-07-15', '2025-07-15', 'IBN SINA' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('2007', 'ASPIRIN', '20', '50', '2022-09-15', '2025-09-17', 'APEK' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('1008', 'KETOFAN', '35', '90', '2023-01-20', '2025-01-20', 'MED CARE' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('3009', 'CATAFAST', '23', '100', '2022-12-03', '2025-12-03', 'ROCHE' , 100);
+ INSERT INTO `MEDICINETBL` VALUES ('1010', 'NOVALGEN', '33', '100', '2022-12-15', '2025-11-27', 'APEK' , 100);
+ 
+ 
+ -- PATIENTTBL
+ delete FROM PATIENTTBL where PAID = 9;
+ 
+ INSERT INTO `PATIENTTBL` VALUES ('0001', 'SAID MOHAMED', '50', '022578565', '01233000456', '3-ST.AHMED ROSHDY-MAADI', '88', '180', 'MALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0002', 'ASHRAF ALI', '42', '025785656',  '0156743895','5-ST.OMRAN-MAADI', '85', '174', 'MALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0003', 'YARA AHMED', '39', '0125785658', '01569885541','8-ST.AHMED ZAKY-MOKHATM', '65', '154', 'FEMALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0004', 'SARA ALI', '35', '01578912346', '01113456721', '44-ST.AHMED ESMAT-AINSHAMES', '70', '150', 'FEMALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0005', 'MOHAMED AHMED', '40', '01122789456', '01598769932','54-ST.ZAHRAA ELMAADI-MAADI', '60', '185', 'MALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0006', 'AYA MOHAMED ', '25', '0127744895', '01032456344','12-ST.FAISAL-GIZA', '50', '165', 'FEMALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0007', 'ENGI OMAR', '52', '01199885566', '0127733810' ,'35-ST.MOSTAFA HAFIZ-AINSHAMES', '54', '154', 'FEMALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0008', 'KAREEM MOHAMED', '28', '01132456789', '01144778819',  '14-ST.EL HAI EL SABEA-NASR CITY', '80', '175', 'MALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0009', 'YOSSIF SHERIF', '30', '01198765432', '01122789123','25-ST.ABAS EL AQAD-NASR CITY', '85', '179', 'MALE');
+ INSERT INTO `PATIENTTBL` VALUES ('0010', 'OLA ASHRAF', '33', '01123456789', '0125795338','13-ST.EL NOZHA-MISR EL GADIDA', '65', '160', 'FEMALE');
+ 
+ </sql><current_tab id="0"/></tab_sql></sqlb_project>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Agents_repository.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;PharmacyManagementSystem&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pharmacymanagementsystem</a> &gt; <span class="el_source">Agents_repository.java</span></div><h1>Agents_repository.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pharmacymanagementsystem;
+
+import pharmacymanagementsystem.Agents;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import net.proteanit.sql.DbUtils;
+
+/**
+ *
+ * @author Dell
+ */
+<span class="nc" id="L23">public class Agents_repository {</span>
+    
+    
+    //(why?) rs &amp; st .close couldn`t be moved bellow the function`s call in Agents class
+    
+    public void SelectMed(Connection Con ,Statement st , ResultSet rs , JTable AgentTable)
+    { try { 
+<span class="nc" id="L30">        Con =DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;);</span>
+<span class="nc" id="L31">        st = Con.createStatement();</span>
+<span class="nc" id="L32">        rs = st.executeQuery(&quot;Select *from AGENTTBL&quot;);</span>
+<span class="nc" id="L33">        AgentTable.setModel(DbUtils.resultSetToTableModel(rs));</span>
+<span class="nc" id="L34">        st.close();</span>
+<span class="nc" id="L35">        rs.close();</span>
+<span class="nc" id="L36">    }   catch (SQLException ex) {</span>
+<span class="nc" id="L37">            System.out.println(ex.getMessage());</span>
+<span class="nc" id="L38">        }</span>
+    
+<span class="nc" id="L40">    }</span>
+    
+   // on writting line 52 in the beginning of the class &quot;stackoverflow&quot; exception will come out.
+  //As the constructor of Agents creates an object of Agents_repository, That`s how a loop rises
+    
+    public void Delete ( JTable AgentTable , String ID)
+    {
+<span class="nc" id="L47">        Agents A = new Agents();</span>
+        try{
+<span class="nc" id="L49">           A.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L50">           String Query =&quot;Delete from AGENTTBL where AID=&quot; +ID;</span>
+<span class="nc" id="L51">           Statement Add = A.getCon().createStatement();</span>
+<span class="nc" id="L52">           Add.executeLargeUpdate(Query);</span>
+<span class="nc" id="L53">           SelectMed(A.getCon() , A.getSt() ,A.getRs() , AgentTable);</span>
+<span class="nc" id="L54">           JOptionPane.showMessageDialog(A, &quot;Agent deleted Successfully&quot;);</span>
+<span class="nc" id="L55">           Add.close();</span>
+<span class="nc" id="L56">           A.getCon().close();</span>
+
+<span class="nc" id="L58">            } catch (SQLException ex) {</span>
+<span class="nc" id="L59">                  System.out.println(ex.getMessage());            }</span>
+<span class="nc" id="L60">    }</span>
+    
+    
+    public void Add (int id , String name , int age , String phone , String password , String gender , JTable AgentTable)
+    {
+<span class="nc" id="L65">        Agents A = new Agents();</span>
+        try {
+<span class="nc" id="L67">            A.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+<span class="nc" id="L68">            PreparedStatement add = A.getCon().prepareStatement(&quot;insert into AGENTTBL values(?,?,?,?,?,?)&quot;);</span>
+<span class="nc" id="L69">            add.setInt(1, id);</span>
+<span class="nc" id="L70">            add.setString(2, name);</span>
+<span class="nc" id="L71">            add.setInt(3, age);</span>
+<span class="nc" id="L72">            add.setString(4, phone);</span>
+<span class="nc" id="L73">            add.setString(5, password);</span>
+<span class="nc" id="L74">            add.setString(6, gender);</span>
+<span class="nc" id="L75">            int row = add.executeUpdate();</span>
+<span class="nc" id="L76">            JOptionPane.showMessageDialog(A, &quot;Agent Added Successfully&quot;);</span>
+<span class="nc" id="L77">            A.getCon().close();</span>
+<span class="nc" id="L78">            SelectMed(A.getCon() , A.getSt() , A.getRs() , AgentTable);</span>
+
+<span class="nc" id="L80">        } catch (SQLException e) {</span>
+<span class="nc" id="L81">          System.out.println(e.getMessage());</span>
+<span class="nc" id="L82">        }</span>
+<span class="nc" id="L83">    }</span>
+    
+    public void update (int id , String name , int age , String phone , String password , String gender , JTable AgentTable)
+    {
+<span class="nc" id="L87">        Agents A = new Agents();</span>
+        try{
+           
+<span class="nc" id="L90">           A.setCon(DriverManager.getConnection(&quot;jdbc:sqlite:Pharmacydb.db&quot;));</span>
+           //String text = AgId.getText();
+<span class="nc" id="L92">           String UpdateQuery =&quot;Update AGENTTBL set ANAME = '&quot;+name+&quot;'&quot;+&quot;,AAGE = &quot;+age+&quot;,APHONE = '&quot;+phone+&quot;'&quot;+&quot;,APASS = '&quot;+password+&quot;'&quot;+&quot;,AGENDER = '&quot;+gender+&quot;'&quot;+&quot;where AId=&quot;+ id;</span>
+<span class="nc" id="L93">           Statement Add = A.getCon().createStatement();</span>
+<span class="nc" id="L94">           Add.executeLargeUpdate(UpdateQuery);</span>
+<span class="nc" id="L95">           JOptionPane.showMessageDialog(A, &quot;Agent updated successfully &quot;); </span>
+<span class="nc" id="L96">           A.getCon().close();</span>
+<span class="nc" id="L97">           Add.close();</span>
+<span class="nc" id="L98">        }catch (SQLException ex) {</span>
+<span class="nc" id="L99">                  System.out.println(ex.getMessage());           </span>
+<span class="nc" id="L100">        }</span>
+         
+<span class="nc" id="L102">         SelectMed(A.getCon() , A.getSt() , A.getRs() , AgentTable); </span>
+<span class="nc" id="L103">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

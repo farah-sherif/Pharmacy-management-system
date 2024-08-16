@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Company_Services.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;PharmacyManagementSystem&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pharmacymanagementsystem</a> &gt; <span class="el_source">Company_Services.java</span></div><h1>Company_Services.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pharmacymanagementsystem;
+
+/**
+ *
+ * @author Dell
+ */
+<span class="fc" id="L12">public class Company_Services {</span>
+    
+    public double get_score(String comp_name) throws Exception
+    {
+<span class="fc" id="L16">        Medicine_repository m = new Medicine_repository();</span>
+<span class="fc" id="L17">        Company_repository c = new Company_repository();</span>
+        
+<span class="fc" id="L19">        int   exp = 0;</span>
+<span class="fc" id="L20">        double sum = 0 , score = 0;</span>
+        
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        for (int i = 1 ; i&lt;=3 ; i++)</span>
+        {
+<span class="fc" id="L24">            sum += m.get_Sqty_C(comp_name, i);  </span>
+        }
+        
+<span class="fc" id="L27">        exp = c.get_exp(comp_name);</span>
+<span class="fc" id="L28">        score = exp * sum;</span>
+
+<span class="fc" id="L30">        return score;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
